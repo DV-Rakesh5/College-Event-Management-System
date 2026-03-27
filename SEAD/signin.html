@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Premium Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-color: #f1f5f9;
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-border: rgba(0, 0, 0, 0.1);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --input-bg: rgba(255, 255, 255, 0.9);
+      --error: #ef4444;
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-shape {
+      position: absolute;
+      filter: blur(80px);
+      z-index: -1;
+      animation: float 15s ease-in-out infinite;
+    }
+    .shape-1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(79, 70, 229, 0.2);
+      top: -100px;
+      left: -100px;
+      border-radius: 50%;
+    }
+    .shape-2 {
+      width: 500px;
+      height: 500px;
+      background: rgba(14, 165, 233, 0.2);
+      bottom: -150px;
+      right: -100px;
+      border-radius: 50%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(30px) scale(1.05); }
+    }
+
+    .signup-container {
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--surface-border);
+      border-radius: 24px;
+      padding: 48px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header { text-align: center; margin-bottom: 32px; }
+    .header h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #0f172a, #4f46e5);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p { color: var(--text-muted); font-size: 15px; }
+
+    .form-group { margin-bottom: 20px; position: relative; }
+    .form-group label {
+      display: block; font-size: 14px; font-weight: 500;
+      margin-bottom: 8px; color: var(--text-muted); transition: color 0.3s ease;
+    }
+    .form-group input {
+      width: 100%; padding: 14px 16px; background: var(--input-bg);
+      border: 1px solid var(--surface-border); border-radius: 12px;
+      color: var(--text-main); font-family: inherit; font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    .form-group input::placeholder { color: #94a3b8; }
+    .form-group input:focus {
+      outline: none; border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+      background: #fff;
+    }
+    .form-group input:focus + label { color: var(--primary); }
+
+    .btn-signup {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      color: white; border: none; border-radius: 12px;
+      font-size: 16px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.3s ease;
+      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+      margin-top: 8px;
+    }
+    .btn-signup:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); }
+    .btn-signup:active { transform: translateY(1px); }
+
+    .footer-text { text-align: center; margin-top: 24px; font-size: 14px; color: var(--text-muted); }
+    .footer-text a { color: var(--primary); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+    .footer-text a:hover { color: var(--primary-hover); text-decoration: underline; }
+
+    .toast {
+      position: absolute; top: 24px; right: 24px; padding: 14px 24px;
+      border-radius: 12px; color: white; font-weight: 500; font-size: 15px;
+      transform: translateX(150%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); z-index: 100;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .toast.show { transform: translateX(0); }
+    .toast.error { background: var(--error); }
+    .toast.success { background: var(--success); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+
+  <div id="toast" class="toast">
+    <span id="toast-icon"></span>
+    <span id="toast-message">Message</span>
+  </div>
+
+  <div class="signup-container">
+    <div class="header">
+      <h2>Create Account</h2>
+      <p>Join us today to get started</p>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input id="name" type="text" placeholder="John Doe" autocomplete="name">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="••••••••" autocomplete="new-password">
+    </div>
+
+    <button class="btn-signup" onclick="signup()">Sign Up</button>
+
+    <div class="footer-text">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+  </div>
+
+  <script>
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+      toast.className = 'toast ' + type;
+      toastMsg.textContent = message;
+      toastIcon.innerHTML = type === 'error' ? '⚠️' : '✅';
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    function signup() {
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const btn = document.querySelector('.btn-signup');
+
+      const user = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value
+      };
+
+      if (!user.name || !user.email || !user.password) {
+        showToast("All fields are required", "error");
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(user.email)) {
+        showToast("Please enter a valid email", "error");
+        return;
+      }
+
+      if (localStorage.getItem(user.email)) {
+        showToast("An account with this email already exists", "error");
+        return;
+      }
+
+      const originalBtnText = btn.textContent;
+      btn.textContent = "Creating account...";
+      btn.style.opacity = "0.8";
+      btn.disabled = true;
+
+      setTimeout(() => {
+        localStorage.setItem(user.email, JSON.stringify(user));
+        showToast("Account created successfully!", "success");
+        setTimeout(() => { window.location = "login.html"; }, 1500);
+      }, 800);
+    }
+
+    document.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') signup();
+    });
+  </script>
+</body>
+</html>
