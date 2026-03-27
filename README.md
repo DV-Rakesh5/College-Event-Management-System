@@ -1,10 +1,9 @@
 # College Event Management System
 
-![College Event Management System](logo.png)
 
 A modern, responsive, and fully functional **College Event Management System** built with HTML, CSS, and Vanilla JavaScript. It features a premium, glassmorphism-based UI design and utilizes `localStorage` for real-time frontend database management without relying on a backend server. 
 
-## ✨ Features
+##  Features
 
 - **Premium Glassmorphism UI**: Beautiful, modern translucent interfaces, dynamic gradients, and smooth scroll animations.
 - **User Authentication**: Frontend mock login and sign-up pages (`login.html` & `signin.html`).
@@ -20,7 +19,7 @@ A modern, responsive, and fully functional **College Event Management System** b
   - Reset Database feature to clear out registrations.
 - **Local Storage Database**: Stores tracking data locally in your browser to simulate a real-time database tracking system.
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 - **HTML5**: Semantic tags for structuring web content.
 - **CSS3**: Modern formatting, Custom Properties (Variables), Flexbox/Grid structuring, and Keyframe Animations.
@@ -37,7 +36,7 @@ A modern, responsive, and fully functional **College Event Management System** b
  ┗ 📄 logo.png        # Project background and branding logo
 ```
 
-## 🛠️ Getting Started
+##  Getting Started
 
 1. **Clone the repository** (or download the zip):
    ```bash
@@ -52,7 +51,7 @@ A modern, responsive, and fully functional **College Event Management System** b
    - Scroll up to the **Admin Dashboard** to see the attendee appear instantly.
    - Use the **Reset Database** button to clear your `localStorage` entries for testing.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
 
