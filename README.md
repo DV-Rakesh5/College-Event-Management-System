@@ -1,6 +1,6 @@
 # College Event Management System
 
-Link : https://clg-event-management.netlify.app/
+Link : https://clg-events-management.netlify.app/
 
 A modern, responsive, and fully functional **College Event Management System** built with HTML, CSS, and Vanilla JavaScript. It features a premium, glassmorphism-based UI design and utilizes `localStorage` for real-time frontend database management without relying on a backend server. 
 
